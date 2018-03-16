@@ -1,1 +1,1 @@
-###Disease simulation in Python 3
+# Disease simulation in Python 3
