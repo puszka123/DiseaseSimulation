@@ -8,7 +8,7 @@ env = simpy.rt.RealtimeEnvironment(initial_time=0, factor=1/30, strict=False)
 
 def simulate():
     display.init_screen()
-    world.init_people(20)
+    world.init_population(20)
     threading.Thread(target=env_run).start()
     game_loop()
 

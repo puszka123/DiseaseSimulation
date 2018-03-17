@@ -4,9 +4,8 @@ import world
 from random import randint
 
 
-class Man:
-    def __init__(self,  env, pos):
-        self.infected = False
+class Person:
+    def __init__(self, env, pos):
         self.infection = 0
         self.pos = pos
         self.speed = 3
@@ -23,7 +22,7 @@ class Man:
     def live(self):
         change_dir_prob = 80
         while not world.done:
-            #run
+            # run
             if randint(0, 100) > change_dir_prob:
                 w = randint(-self.speed, self.speed)
                 h = randint(-self.speed, self.speed)
@@ -32,6 +31,3 @@ class Man:
                 self.run(self.direction)
 
             yield self.env.timeout(1)
-
-    def get_infected(self):
-        self.infected = True

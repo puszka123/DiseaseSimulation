@@ -1,6 +1,7 @@
+
 import pygame
+
 import world
-from pygame.locals import *
 
 screen = None
 
@@ -24,6 +25,6 @@ def check_input():
 def render():
     global screen
     screen.fill((0, 150, 0))
-    for man in world.get_people():
-        pygame.draw.circle(screen, (man.infected, 0, 255 - man.infected), man.pos, world.circle_radius)
+    for person in world.get_population():
+        pygame.draw.circle(screen, (person.infection, 0, 255 - person.infection), person.pos, world.circle_radius)
     pygame.display.flip()
