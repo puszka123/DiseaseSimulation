@@ -5,10 +5,11 @@ from random import randint
 
 
 class Person:
-    def __init__(self, env, pos):
+    def __init__(self, env, pos, idnum):
+        self.id = idnum
         self.infection = 0
         self.pos = pos
-        self.speed = 3
+        self.speed = 10
         self.direction = [0, 0]
         self.env = env
         env.process(self.live())
@@ -16,8 +17,9 @@ class Person:
     def run(self, direction):
         newpos = utils.add_vectors(self.pos, direction)
         if not collider.is_out_of_map(newpos):
-            self.direction = direction
-            self.pos = newpos
+            if not collider.collide_with_walls(self.id, newpos):
+                self.pos = newpos
+                self.direction = direction
 
     def live(self):
         change_dir_prob = 80
@@ -26,6 +28,7 @@ class Person:
             if randint(0, 100) > change_dir_prob:
                 w = randint(-self.speed, self.speed)
                 h = randint(-self.speed, self.speed)
+                #print([w, h])
                 self.run([w, h])
             else:
                 self.run(self.direction)
