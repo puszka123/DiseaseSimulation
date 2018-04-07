@@ -22,7 +22,8 @@ class Cameraman(pygame.sprite.Sprite):
 
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, idnum):
+    def __init__(self, idnum, person):
+        self.person = person
         self.id = idnum
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.Surface((TILESIZE, TILESIZE))
@@ -33,6 +34,7 @@ class Player(pygame.sprite.Sprite):
     def update(self):
         self.rect.x = world.get_population()[self.id].pos[0]
         self.rect.y = world.get_population()[self.id].pos[1]
+        self.image.fill((self.person.infection, 0, 255 - self.person.infection))
         #print(world.get_population()[0].pos)
 
 
@@ -74,7 +76,7 @@ class Game:
             self.walls.append(Wall(wall[0], wall[1]))
         self.all_sprites.add(self.walls)
         for person in world.get_population():
-            self.players.append(Player(person.id))
+            self.players.append(Player(person.id, person))
         self.all_sprites.add(self.players)
 
     def draw_grid(self):

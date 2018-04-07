@@ -20,10 +20,10 @@ def init_population(number_of_people):
     global population
     for i in range(number_of_people):
         population += [person.Person(simulation.env, [randint(0, GRIDWIDTH*TILESIZE),
-                                                      randint(0, GRIDHEIGHT*TILESIZE)], i)]
+                                                      randint(0, GRIDHEIGHT*TILESIZE)], i, population)]
     infections = []
     for m in population:
-        if randint(0, 100) < 10:
+        if randint(0, 100) < 20:
             infections.append(infection.Infection(simulation.env, m, population, infections))
 
 
