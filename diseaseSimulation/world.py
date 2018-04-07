@@ -30,8 +30,8 @@ def init_population(number_of_people):
 def init_world():
     global walls, tilemap
     load_data()
-    for row, tiles in enumerate(tilemap.data):
-        for col, tile in enumerate(tiles):
+    for col, tiles in enumerate(tilemap.data):
+        for row, tile in enumerate(tiles):
             if tile == '1':
                 walls.append([row, col])
     print(walls)
