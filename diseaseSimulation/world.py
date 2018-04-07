@@ -17,10 +17,9 @@ tilemap = None
 
 
 def init_population(number_of_people):
-    global population
+    global population, tilemap
     for i in range(number_of_people):
-        population += [person.Person(simulation.env, [randint(0, GRIDWIDTH*TILESIZE),
-                                                      randint(0, GRIDHEIGHT*TILESIZE)], i, population)]
+        population += [person.Person(simulation.env, i, population, tilemap.width, tilemap.height)]
     infections = []
     for m in population:
         if randint(0, 100) < 20:

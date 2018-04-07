@@ -5,12 +5,24 @@ import collider
 import world
 from random import randint
 
+from settings import *
+
 
 class Person:
-    def __init__(self, env, pos, idnum, population):
+    def __init__(self, env, idnum, population, map_width, map_height):
         self.id = idnum
         self.infection = 0
-        self.pos = pos
+        self.map_width = map_width
+        self.map_height = map_height
+
+        rand_pos = None
+        while True:
+            rand_pos = [randint(TILESIZE+1, map_width- TILESIZE*5-1), randint(TILESIZE+1, map_height-TILESIZE*5 -1)]
+            if not (collider.collide_with_walls(self.id, rand_pos)):
+                break
+        self.pos = rand_pos
+
+
         self.speed = 10
         self.direction = [0, 0]
         self.env = env
