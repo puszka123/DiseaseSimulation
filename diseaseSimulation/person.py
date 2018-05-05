@@ -67,10 +67,10 @@ class Person:
         direction = [self.myround(direction[0], TILESIZE),self.myround(direction[1], TILESIZE)]
 
         newpos = utils.add_vectors(self.pos, direction)
-        if not collider.is_out_of_map(newpos):
+        #if not collider.is_out_of_map(newpos):
             #if not collider.collide_with_walls(self.id, newpos):
-            self.pos = newpos
-            self.direction = direction
+        self.pos = newpos
+        self.direction = direction
 
     def live(self):
         change_dir_prob = 80
