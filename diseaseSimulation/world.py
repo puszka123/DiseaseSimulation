@@ -11,7 +11,9 @@ population = []
 circle_radius = 16
 width, height = 1024, 768
 done = False
-walls = []
+grass = []
+walkpath = []
+road =[]
 game = None
 tilemap = None
 
@@ -27,19 +29,23 @@ def init_population(number_of_people):
 
 
 def init_world():
-    global walls, tilemap
+    global grass, walkpath, road, tilemap
     load_data()
     for col, tiles in enumerate(tilemap.data):
         for row, tile in enumerate(tiles):
-            if tile == '_':
-                walls.append([row, col])
-    #print(walls)
+            if tile == '2':
+                grass.append([row, col])
+            elif tile == '0':
+                walkpath.append([row, col])
+            elif tile == '1':
+                road.append([row, col])
 
 
 def load_data():
     global tilemap
     game_folder = path.dirname(__file__)
     tilemap = Map(path.join(game_folder, 'map.txt'))
+    tilemap.convert_tilemap('map/map.txt')
 
 
 def get_population():

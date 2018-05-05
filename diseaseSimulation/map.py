@@ -1,5 +1,6 @@
 import pygame
 from settings import *
+import re
 
 
 class Map:
@@ -13,6 +14,18 @@ class Map:
         self.tileheight = len(self.data)
         self.width = self.tilewidth*TILESIZE
         self.height = self.tileheight*TILESIZE
+
+    def convert_tilemap(self, tilemap_path_txt):
+        data = []
+        with open(tilemap_path_txt, 'rt') as tilemap:
+            for line in tilemap:
+                row = line.split(',')
+                data.append(row)
+        self.data = data
+        self.tilewidth = len(self.data[0])
+        self.tileheight = len(self.data)
+        self.width = self.tilewidth * TILESIZE
+        self.height = self.tileheight * TILESIZE
 
 
 class Camera:

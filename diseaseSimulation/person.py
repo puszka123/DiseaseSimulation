@@ -9,10 +9,12 @@ from random import *
 
 from settings import *
 
+
 class Position:
     def __init__(self, x, y):
         self.x = 0
         self.y = 0
+
 
 class Person:
     def __init__(self, env, idnum, population, map_width, map_height):
@@ -66,9 +68,9 @@ class Person:
 
         newpos = utils.add_vectors(self.pos, direction)
         if not collider.is_out_of_map(newpos):
-            if not collider.collide_with_walls(self.id, newpos):
-                self.pos = newpos
-                self.direction = direction
+            #if not collider.collide_with_walls(self.id, newpos):
+            self.pos = newpos
+            self.direction = direction
 
     def live(self):
         change_dir_prob = 80

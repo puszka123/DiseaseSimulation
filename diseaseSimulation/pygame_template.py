@@ -38,11 +38,12 @@ class Player(pygame.sprite.Sprite):
         #print(world.get_population()[0].pos)
 
 
-class Wall(pygame.sprite.Sprite):
-    def __init__(self, x, y):
+class TerrainElement(pygame.sprite.Sprite):
+    def __init__(self, x, y, image_path):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.Surface((TILESIZE, TILESIZE))
-        self.image.fill((100, 100, 100))
+        #self.image = pygame.Surface((TILESIZE, TILESIZE))
+        #self.image.fill((100, 100, 100))
+        self.image = pygame.image.load(image_path)
         self.rect = self.image.get_rect()
         self.rect.x = x*TILESIZE
         self.rect.y = y * TILESIZE
@@ -61,7 +62,9 @@ class Game:
 
         self.all_sprites = pygame.sprite.Group()
         self.players = []
-        self.walls = []
+        self.grass = []
+        self.walkpath = []
+        self.road = []
         #player = Player(world.get_population()[0].id)
         #self.load_data()
         self.init_map()
@@ -72,9 +75,15 @@ class Game:
         self.camera = map.Camera(world.tilemap.width, world.tilemap.height)
 
     def init_map(self):
-        for wall in world.walls:
-            self.walls.append(Wall(wall[0], wall[1]))
-        self.all_sprites.add(self.walls)
+        for grass in world.grass:
+            self.grass.append(TerrainElement(grass[0], grass[1], "images/grass.png"))
+        self.all_sprites.add(self.grass)
+        for walkpath in world.walkpath:
+            self.walkpath.append(TerrainElement(walkpath[0], walkpath[1], "images/walkpath.png"))
+        self.all_sprites.add(self.walkpath)
+        for road in world.road:
+            self.road.append(TerrainElement(road[0], road[1], "images/road.png"))
+        self.all_sprites.add(self.road)
         for person in world.get_population():
             self.players.append(Player(person.id, person))
         self.all_sprites.add(self.players)
@@ -128,6 +137,6 @@ class Game:
 
 
 
-    def collision_with_walls(self, person_id, newpos):
-        self.players[person_id].rect.topleft = newpos
-        return pygame.sprite.spritecollideany(self.players[person_id], self.walls)
+    #def collision_with_walls(self, person_id, newpos):
+     #   self.players[person_id].rect.topleft = newpos
+     #   return pygame.sprite.spritecollideany(self.players[person_id], self.walls)
