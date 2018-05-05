@@ -31,9 +31,9 @@ def init_world():
     load_data()
     for col, tiles in enumerate(tilemap.data):
         for row, tile in enumerate(tiles):
-            if tile == '1':
+            if tile == '_':
                 walls.append([row, col])
-    print(walls)
+    #print(walls)
 
 
 def load_data():

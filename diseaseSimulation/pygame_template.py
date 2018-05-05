@@ -96,7 +96,7 @@ class Game:
             self.camera.update(self.cameraman)
             #Render
             self.screen.fill((0, 150, 0))
-            self.draw_grid()
+            #self.draw_grid()
             #self.all_sprites.draw(self.screen)
             for sprite in self.all_sprites:
                 self.screen.blit(pygame.transform.scale(sprite.image, (TILESIZE, TILESIZE)), self.camera.apply(sprite))
