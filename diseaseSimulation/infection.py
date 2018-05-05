@@ -1,5 +1,6 @@
 # człowiek nie wybiera choroby, to choroba wybiera człowieka
 import world
+from settings import TILESIZE
 from utils import distance
 
 
@@ -16,7 +17,7 @@ class Infection:
         while not world.done:
             for person in self.population:
                 if person.infection <= 0:
-                    if distance(person.pos, self.person.pos) <= 2 * world.circle_radius:
+                    if distance(person.pos, self.person.pos) <= TILESIZE:
                         self.infections.append(Infection(self.env, person, self.population, self.infections))
             if not self.person.infection >= 255:
                 self.person.infection += 10

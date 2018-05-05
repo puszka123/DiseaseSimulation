@@ -5,7 +5,7 @@ import settings
 import map
 import os
 
-os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (0,0)
+os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (50,50)
 
 class Cameraman(pygame.sprite.Sprite):
     def __init__(self):

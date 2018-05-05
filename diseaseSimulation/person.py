@@ -109,16 +109,6 @@ class Person:
 
                     current_pos = (int(self.pos[0]/TILESIZE),int(self.pos[1]/TILESIZE))
 
-                    move_x = 0
-                    move_y = 0
-
-                    print("up is ", map[current_pos[1]+1][current_pos[0]])
-                    print("down is ", map[current_pos[1]-1][current_pos[0]])
-
-                    print("left is ", map[current_pos[1]][current_pos[0]-1])
-
-                    print("right is ", map[current_pos[1]][current_pos[0]+1])
-
                     possible_moves = []
 
                     if map[current_pos[1]+1][current_pos[0]] == '0' and not (self.prev_pos[0] == current_pos[0] and self.prev_pos[1] == current_pos[1]+1):
