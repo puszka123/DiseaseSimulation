@@ -10,6 +10,9 @@ from random import *
 from settings import *
 
 
+random1 = Random()
+
+
 class Position:
     def __init__(self, x, y):
         self.x = 0
@@ -27,6 +30,7 @@ class Person:
         self.path_count = 0
         self.follow_road = True
         self.prev_pos = (-1,-1)
+        self.resistance = random1.randint(0, 50)
 
         rand_pos = None
         while True:
