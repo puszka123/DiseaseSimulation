@@ -74,6 +74,10 @@ class Game:
         #self.all_sprites.add(self.cameraman)
         self.camera = map.Camera(world.tilemap.width, world.tilemap.height)
 
+        pygame.font.init()
+
+        self.myfont = pygame.font.SysFont('Arial', 21)
+
     def init_map(self):
         for grass in world.grass:
             self.grass.append(TerrainElement(grass[0], grass[1], "images/grass.png"))
@@ -109,6 +113,21 @@ class Game:
             #self.all_sprites.draw(self.screen)
             for sprite in self.all_sprites:
                 self.screen.blit(pygame.transform.scale(sprite.image, (TILESIZE, TILESIZE)), self.camera.apply(sprite))
+
+            inf_count = 0
+            healthy_count = 0
+            for person in world.population:
+                if person.infection == 255:
+                    inf_count = inf_count + 1
+                else:
+                    healthy_count = healthy_count + 1
+
+            textsurface = self.myfont.render('Healthy: ' + str(healthy_count), False, (200, 50, 50))
+            self.screen.blit(textsurface,(0,0))
+
+            textsurface = self.myfont.render('Infected: ' + str(inf_count), False, (200, 50, 50))
+            self.screen.blit(textsurface,(0,30))
+
             #always last command(double buffering)
             pygame.display.flip()
         pygame.quit()
