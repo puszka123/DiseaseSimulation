@@ -24,7 +24,7 @@ def init_population(number_of_people):
         population += [person.Person(simulation.env, i, population, tilemap.width, tilemap.height)]
     infections = []
     for m in population:
-        if randint(0, 100) < 20:
+        if randint(0, 100) < 2:
             infections.append(infection.Infection(simulation.env, m, population, infections))
 
 

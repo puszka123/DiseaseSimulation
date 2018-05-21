@@ -30,7 +30,8 @@ class Person:
         self.path_count = 0
         self.follow_road = True
         self.prev_pos = (-1,-1)
-        self.resistance = random1.randint(0, 50)
+        self.resistance = random1.randint(40, 60)
+        self.last_made_contact = time.time()
 
         rand_pos = None
         while True:
