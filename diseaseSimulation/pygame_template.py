@@ -34,7 +34,10 @@ class Player(pygame.sprite.Sprite):
     def update(self):
         self.rect.x = world.get_population()[self.id].pos[0]
         self.rect.y = world.get_population()[self.id].pos[1]
-        self.image.fill((self.person.infection, 0, 255 - self.person.infection))
+        if self.person.dead:
+            self.image.fill((0, 0, 0))
+        else:
+            self.image.fill((self.person.infection, 0, 255 - self.person.infection))
         #print(world.get_population()[0].pos)
 
 
@@ -116,8 +119,11 @@ class Game:
 
             inf_count = 0
             healthy_count = 0
+            dead_count = 0
             for person in world.population:
-                if person.infection == 255:
+                if person.dead:
+                    dead_count = dead_count + 1
+                elif person.infection == 255:
                     inf_count = inf_count + 1
                 else:
                     healthy_count = healthy_count + 1
@@ -127,6 +133,9 @@ class Game:
 
             textsurface = self.myfont.render('Infected: ' + str(inf_count), False, (200, 50, 50))
             self.screen.blit(textsurface,(0,30))
+
+            textsurface = self.myfont.render('Dead: ' + str(dead_count), False, (200, 50, 50))
+            self.screen.blit(textsurface,(0,60))
 
             #always last command(double buffering)
             pygame.display.flip()

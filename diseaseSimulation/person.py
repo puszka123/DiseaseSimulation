@@ -32,6 +32,7 @@ class Person:
         self.prev_pos = (-1,-1)
         self.resistance = random1.randint(40, 60)
         self.last_made_contact = time.time()
+        self.dead = False
 
         rand_pos = None
         while True:
@@ -79,7 +80,8 @@ class Person:
 
     def live(self):
         change_dir_prob = 80
-        while not world.done:
+
+        while not world.done and not self.dead:
             # if time.time() > self.timer + randint(4, 8):
             #
             #     if self.bored is True:
