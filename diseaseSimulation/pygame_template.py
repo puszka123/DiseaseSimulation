@@ -4,6 +4,8 @@ from settings import *
 import settings
 import map
 import os
+import simulation
+from monitor import *
 
 os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (50,50)
 

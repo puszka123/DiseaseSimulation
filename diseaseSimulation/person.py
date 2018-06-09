@@ -30,9 +30,20 @@ class Person:
         self.path_count = 0
         self.follow_road = True
         self.prev_pos = (-1,-1)
-        self.resistance = random1.randint(40, 60)
+        self.resistance = random1.randint(0, 101)
         self.last_made_contact = time.time()
         self.dead = False
+        self.age = random1.randint(10, 100)
+        self.stamina = 0
+        if self.age >= 10 and self.age < 18:
+            self.stamina = random1.randint(10, 51)
+        if self.age >= 18 and self.age < 50:
+            self.stamina = random1.randint(51, 101)
+        if self.age >= 51  and self.age < 65:
+            self.stamina = random1.randint(30, 51)
+        if self.age > 66:
+            self.stamina = random1.randint(10, 41)
+        self.timeToDeath = (float(world.infection_strength)/100 + float(self.stamina)/100)*world.average_death_time
 
         rand_pos = None
         while True:
@@ -65,6 +76,12 @@ class Person:
 
         #print(self.path)
         self.on_path = False
+
+        #stats
+        world.mean_resistance += self.resistance
+        world.age_average += self.age
+        world.deathTime_average += self.timeToDeath
+
 
     def myround(self, x, base=5):
         return int(base * round(float(x) / base))

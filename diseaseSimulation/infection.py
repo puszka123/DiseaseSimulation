@@ -16,7 +16,7 @@ class Infection:
         self.person = person
         self.population = population
         self.infections = infections
-        self.timeWhenInfected = time.time()
+        self.timeWhenInfected = env.now
 
         env.process(self.live())
 
@@ -35,7 +35,8 @@ class Infection:
             if self.person.infection > 255:
                 self.person.infection = 255
 
-            if time.time() > self.timeWhenInfected + 30 + random10.randint(0,20):
+            if self.env.now > self.timeWhenInfected + self.person.timeToDeath:
                 self.person.dead = True
+                break
 
             yield self.env.timeout(1)
