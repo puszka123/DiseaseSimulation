@@ -1,0 +1,38 @@
+Dwie pierwsze symulacje pokazuja rozprzestrzenianie sie choroby przy ilosci poczatkowych zainfekowanych ludzi. 
+Symulacja 3 i 4 bierze pod uwage zmiane odpornosci na chorobe i wiek.
+symulacja 5 pokazuje przebieg choroby przy zwiekszonej populacji.
+
+1 symulacja
+number of people: 100
+number of infected people: 10
+resistance average: 48.97
+death time average: 3700.44
+age average: 53
+
+2 symulacja
+number of people: 100
+number of infected people: 1
+resistance average: 52.26
+death time average: 3561.12
+age average: 49
+
+3 symulacja
+number of people: 100
+number of infected people: 1
+resistance average: 23.28
+death time average: 3511.08
+age average: 48
+
+4 symulacja
+number of people: 100
+number of infected people: 1
+resistance average: 51.44
+death time average: 4577.04
+age average: 33
+
+5 symulacja
+number of people: 200
+number of infected people: 1
+resistance average: 49.545
+death time average: 3514.14
+age average: 54
